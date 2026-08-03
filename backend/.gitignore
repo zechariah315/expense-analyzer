@@ -1,0 +1,9 @@
+#Security
+.env
+
+#Environments
+venv/
+
+#Cashe
+__pycache__/
+
