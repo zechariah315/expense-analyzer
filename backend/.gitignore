@@ -1,5 +1,6 @@
 #Security
 .env
+alembic.ini
 
 #Environments
 venv/
