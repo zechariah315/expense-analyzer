@@ -36,3 +36,14 @@ class ExpenseResponse(ExpenseCreate):
 
     class Config:
         from_attributes = True
+
+
+# -------------------
+# Token Schemas
+# ------------------
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    id: Optional[str]=None

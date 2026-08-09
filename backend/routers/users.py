@@ -7,6 +7,6 @@ from crud import user
 router=APIRouter(prefix="/users", tags=["Users"])
 
 @router.post("/", response_model=schemas.UserResponse)
-def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    return user.create_user(db, user)
+def create_user(user_: schemas.UserCreate, db: Session = Depends(get_db)):
+    return user.create_user(db, user_)
 

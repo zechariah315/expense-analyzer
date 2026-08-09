@@ -18,3 +18,4 @@ def create_user_expense(db: Session, expense: schemas.ExpenseCreate, user_id: in
 
 def get_expenses_by_user(db: Session, user_id: int, skip: int=0, limit=100):
     return db.query(Expense).filter(Expense.owner_id==user_id).order_by(Expense.date.desc()).offset(skip).limit(limit).all()
+

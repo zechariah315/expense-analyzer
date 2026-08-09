@@ -1,14 +1,11 @@
-from pwdlib import PasswordHash
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
 from sqlalchemy.exc import IntegrityError
+from pwdlib import PasswordHash
 from models import User
+from services.user import get_password_hash
 import schemas
 
-password_hash = PasswordHash.recommended()
-
-def get_password_hash(password: str):
-    return password_hash.hash(password)
 
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
@@ -36,3 +33,5 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
+def verify_password(password: str, hashed_password: str):
+    return PasswordHash.verify(password, hashed_password)
