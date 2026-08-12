@@ -33,5 +33,3 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
-def verify_password(password: str, hashed_password: str):
-    return PasswordHash.verify(password, hashed_password)
