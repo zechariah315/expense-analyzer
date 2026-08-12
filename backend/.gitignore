@@ -1,10 +1,28 @@
-#Security
+# Environment variables / secrets
 .env
-alembic.ini
+.env.*
 
-#Environments
+# Virtual environments
 venv/
+.venv/
 
-#Cashe
+# Python cache
 __pycache__/
+*.py[cod]
 
+# Test / coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
