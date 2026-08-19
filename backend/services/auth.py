@@ -43,7 +43,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         raise credentials_exception
 
     # Retrieve the verified user
-    user = db.query(models.User).filter(models.User.id == int(user_id)).first()
+    user = db.query(models.User).filter(models.User.id == int(user_id)).one_or_none()
     if user is None:
         raise credentials_exception
 

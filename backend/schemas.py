@@ -29,6 +29,11 @@ class ExpenseCreate(BaseModel):
     category: str
     description: Optional[str] = None
 
+class ExpenseUpdate(BaseModel):
+    title: Optional[str] = None
+    amount: Optional[float] = None
+    category: Optional[str] = None
+
 class ExpenseResponse(ExpenseCreate):
     id: int
     date: datetime
@@ -47,3 +52,5 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     id: Optional[str]=None
+
+
