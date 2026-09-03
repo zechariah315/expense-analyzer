@@ -19,6 +19,13 @@ def create_expense(expense_: schemas.ExpenseCreate, db: Session = Depends(get_db
 def read_expenses(skip: int=0, limit: int=100, db: Session=Depends(get_db), current_user: User=Depends(get_current_user)):
     return expense.get_expenses_by_user(db, skip=skip, limit=limit, user_id=current_user.id)
 
+@router.get("/summary", response_model=List[schemas.CategorySummary])
+def read_expense_summary(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """
+    Returns a calculated breakdown of total expenses grouped by category
+    """
+    return expense.get_eepense_summary_by_category(db, user_id=current_user.id)
+
 @router.update("/{expese_id}", reponse_model=schemas.ExpenseResponse)
 def update_expense(expense_id: int, expense_data: schemas.ExpenseUpdate, db: Session = Depends(get_db), current_user: User=Depends(get_current_user)):
     updated_expense=expense.update_expense(db, expense_id, current_user.id, expense_data)

@@ -1,10 +1,12 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import func
 from fastapi import HTTPException
 from models import Expense
 import schemas
 
 def create_user_expense(db: Session, expense: schemas.ExpenseCreate, user_id: int):
+
     db_expense = Expense(**expense.model_dump(), owner_id=user_id)
     db.add(db_expense)
 
@@ -17,6 +19,7 @@ def create_user_expense(db: Session, expense: schemas.ExpenseCreate, user_id: in
     return db_expense
 
 def get_expenses_by_user(db: Session, user_id: int, skip: int=0, limit=100):
+
     return db.query(Expense).filter(Expense.owner_id==user_id).order_by(Expense.date.desc()).offset(skip).limit(limit).all()
 
 def update_expense(db: Session, expense_id: int, user_id: int, expense_data: schemas.ExpenseUpdate):
@@ -45,3 +48,10 @@ def delete_expense(db: Session, expense_id: int, user_id):
     db.delete(db_expense)
     db.commit()
     return db_expense
+
+
+def get_expense_summary_by_category(db: Session, user_id: int):
+
+    results = db.query(Expense.category, func.sum(Expense.amount).label("total")).filter(Expense.owner_id == user_id).group_by(Expense.category).all()
+
+    return results

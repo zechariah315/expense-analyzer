@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
 
-
 # -------------------
 # User Schemas
 # -------------------
@@ -18,7 +17,6 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
-
 
 # -------------------
 # Expense Schemas
@@ -42,10 +40,9 @@ class ExpenseResponse(ExpenseCreate):
     class Config:
         from_attributes = True
 
-
 # -------------------
 # Token Schemas
-# ------------------
+# -------------------
 class Token(BaseModel):
     access_token: str
     token_type: str
@@ -53,4 +50,10 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     id: Optional[str]=None
 
+# ------------------
+# Analytics Schemas
+# ------------------
+class CategorySummary(BaseModel):
+    category: str
+    total: float
 
