@@ -24,7 +24,7 @@ def read_expense_summary(db: Session = Depends(get_db), current_user: User = Dep
     """
     Returns a calculated breakdown of total expenses grouped by category
     """
-    return expense.get_eepense_summary_by_category(db, user_id=current_user.id)
+    return expense.get_expense_summary_by_category(db, user_id=current_user.id)
 
 @router.put("/{expese_id}", response_model=schemas.ExpenseResponse)
 def update_expense(expense_id: int, expense_data: schemas.ExpenseUpdate, db: Session = Depends(get_db), current_user: User=Depends(get_current_user)):
