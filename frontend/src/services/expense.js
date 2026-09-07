@@ -2,7 +2,7 @@ import api from './api'
 
 export const expenseService = {
     getExpenses: async (skip = 0, limit = 100) => {
-        const response = await api.get('/expenses/?skip = ${skip}&limit=${limit}');
+        const response = await api.get(`/expenses/?skip = ${skip}&limit=${limit}`);
         return response.data;
     },
 
@@ -12,12 +12,12 @@ export const expenseService = {
     },
 
     updateExpense: async (id, expenseData) => {
-        const response = await api.put('/expenses/${id}', expenseData);
+        const response = await api.put(`/expenses/${id}`, expenseData);
         return response.data;
     },
 
     deleteExpense: async (id) => {
-        const response = await api.delete('/expenses/${id}');
+        const response = await api.delete(`/expenses/${id}`);
         return response.data;
     },
 
