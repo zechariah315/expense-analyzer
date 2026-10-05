@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from 'reacte';
-import { authService } from '../services/auth.service';
+import { createContext, useState, useEffect } from 'react';
+import { authService } from '../services/auth';
 
 export const AuthContext = createContext();
 
@@ -12,9 +12,10 @@ export const AuthProvider = ({ children }) => {
             const token = localStorage.getItem('token');
             if (token) {
                 try {
-                    const userData = await authService.get.CurrentUser();
+                    const userData = await authService.getCurrentUser();
                     setUser(userData);
-                } catch (error) {
+                } 
+                catch (error) {
                     localStorage.removeItem('token');
                     setUser(null);
                 }
