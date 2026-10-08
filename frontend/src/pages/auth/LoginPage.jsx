@@ -6,7 +6,7 @@ export default function LoginPage() {
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({name: '', email: '', password: ''});
     const [error, setError] = useState('');
-    const [isSubmitting, setIsSubmmiting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { user, login, register } = useAuth();
     const navigate = useNavigate();
@@ -66,7 +66,7 @@ export default function LoginPage() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {!isLogin && (
                         <div className="space-y-2">
-                            <lable className="text-sm font-semibold text-slate-700">Full Name</lable>
+                            <label className="text-sm font-semibold text-slate-700">Full Name</label>
                             <input
                             type="text"
                             name="name"
@@ -80,7 +80,7 @@ export default function LoginPage() {
                     )}
 
                     <div className="space-y-2">
-                        <lable className="text-sm font-semibold text-slate-700">Email Address</lable>
+                        <label className="text-sm font-semibold text-slate-700">Email Address</label>
                         <input
                         type="email"
                         name="email"
@@ -93,7 +93,7 @@ export default function LoginPage() {
                     </div>
 
                     <div className="space-y-2">
-                        <lable className="text-sm font-semibold text-slate-700">Password</lable>
+                        <label className="text-sm font-semibold text-slate-700">Password</label>
                         <input
                         type="password"
                         name="password"
@@ -108,9 +108,9 @@ export default function LoginPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-2.5 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
+                      className="cursor-pointer w-full py-2.5 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center"
                     >
-                      {isSubmmiting ? (
+                      {isSubmitting ? (
                         <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
 
                       ) : (
@@ -127,7 +127,7 @@ export default function LoginPage() {
                           setIsLogin(!isLogin);
                           setError('');
                       }}
-                      className="text-blue-600 hover:text-blue-800 hover:underline transition-all"
+                      className="cursor-pointer text-blue-600 hover:text-blue-800 hover:underline transition-all"
                     >
                     {isLogin ? 'Sign up' : 'Sign in'}
                     </button>
